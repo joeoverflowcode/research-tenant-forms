@@ -9,14 +9,13 @@ type FormValues = {
   message: string;
 };
 export default function ZodForm() {
-
   const formLabels = {
-    firstName: 'First name:',
-    lastName: 'Last name:',
-    email: 'Email:',
-    message:'Message:',
-    submit: "Submit"
-  }
+    firstName: "First name:",
+    lastName: "Last name:",
+    email: "Email:",
+    message: "Message:",
+    submit: "Submit",
+  };
 
   const form = useForm({
     defaultValues: {
@@ -49,9 +48,8 @@ export default function ZodForm() {
           form.handleSubmit();
         }}
       >
-        <form.Field
-          name="firstName"
-          children={(field) => (
+        <form.Field name="firstName">
+          {(field) => (
             <div className="flex flex-col gap-2">
               <label htmlFor="first name">{formLabels.firstName}</label>
               <input
@@ -68,11 +66,10 @@ export default function ZodForm() {
               ))}
             </div>
           )}
-        />
+        </form.Field>
 
-<form.Field
-          name="lastName"
-          children={(field) => (
+        <form.Field name="lastName">
+          {(field) => (
             <div className="flex flex-col gap-2">
               <label htmlFor="lastName">{formLabels.lastName}</label>
               <input
@@ -89,11 +86,11 @@ export default function ZodForm() {
               ))}
             </div>
           )}
-        />
+        </form.Field>
 
         <form.Field
-          name="email"
-          children={(field) => (
+          name="email">
+          {(field) => (
             <div className="flex flex-col gap-2">
               <label htmlFor="email">{formLabels.email}</label>
               <input
@@ -102,7 +99,7 @@ export default function ZodForm() {
                 value={field.state.value}
                 onBlur={field.handleBlur}
                 onChange={(e) => field.handleChange(e.target.value)}
-              />
+                />
               {field.state.meta.errors.map((error) => (
                 <p className="text-red-500" key={error?.message}>
                   {error?.message}
@@ -110,11 +107,11 @@ export default function ZodForm() {
               ))}
             </div>
           )}
-        />
+          </form.Field>
 
         <form.Field
-          name="message"
-          children={(field) => (
+          name="message">
+          {(field) => (
             <div className="flex flex-col gap-2">
               <label htmlFor="message">{formLabels.message}</label>
               <input
@@ -131,13 +128,22 @@ export default function ZodForm() {
               ))}
             </div>
           )}
-        />
-        <form.Subscribe selector={(formState) => [formState.canSubmit, formState.isSubmitting]}>
+        </form.Field>
+        
+        <form.Subscribe
+          selector={(formState) => [
+            formState.canSubmit,
+            formState.isSubmitting,
+          ]}
+        >
           {([canSubmit, isSubmitting]) => (
-                    <button type="submit" className="hover:translate-0.5 hover:cursor-pointer bg-button text-white p-2 rounded-md disabled:opacity-40"
-                    disabled={!canSubmit || isSubmitting}>
-          {formLabels.submit}
-        </button>
+            <button
+              type="submit"
+              className="hover:translate-0.5 hover:cursor-pointer bg-button text-white p-2 rounded-md disabled:opacity-40"
+              disabled={!canSubmit || isSubmitting}
+            >
+              {formLabels.submit}
+            </button>
           )}
         </form.Subscribe>
       </form>
