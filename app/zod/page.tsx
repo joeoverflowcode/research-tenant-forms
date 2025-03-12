@@ -8,6 +8,7 @@ type FormValues = {
   email: string;
   message: string;
 };
+
 export default function ZodForm() {
   const formLabels = {
     firstName: "First name:",
@@ -29,21 +30,21 @@ export default function ZodForm() {
     },
     validators: {
       onChange: z.object({
-        firstName: z.string().min(3, "We need your name here chief!"),
-        lastName: z.string().min(3, "last name"),
-        email: z.string().email("c'mon pal, you're not fooling anyone!"),
+        firstName: z.string().min(3, "A first name is required"),
+        lastName: z.string().min(3, "A last name is required"),
+        email: z.string().email("Invalid email format"),
         message: z
           .string()
-          .min(10, "Keep it clean or else I'm posting this all over BlueSky"),
+          .min(10, "A message is required"),
       }),
     },
   });
 
   return (
-    <div className="p-4">
+    <div className="p-4 w-full flex flex-col items-center">
       <h1 className="text-2xl pb-2">Tanstack form WITH Zod</h1>
       <form
-        className="flex flex-col gap-4"
+        className="flex flex-col gap-4 lg:max-w-[30rem] w-full"
         onSubmit={(e) => {
           e.preventDefault();
           form.handleSubmit();
