@@ -41,6 +41,7 @@ export default function ZodForm() {
 
   return (
     <div className="p-4">
+      <h1 className="text-2xl pb-2">Tanstack form WITH Zod</h1>
       <form
         className="flex flex-col gap-4"
         onSubmit={(e) => {
