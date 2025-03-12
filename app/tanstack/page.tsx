@@ -1,6 +1,5 @@
 "use client";
 import * as React from "react";
-import { createRoot } from "react-dom/client";
 import { useForm } from "@tanstack/react-form";
 import type { AnyFieldApi } from "@tanstack/react-form";
 
@@ -57,11 +56,12 @@ const TanStack = () => {
                   value.includes("error") && 'No "error" allowed in first name'
                 );
               },
-            }}
-            children={(field) => {
-              // Avoid hasty abstractions. Render props are great!
-              return (
-                <div className="flex flex-col gap-2">
+            }}>
+
+            {(field) => {
+                // Avoid hasty abstractions. Render props are great!
+                return (
+                    <div className="flex flex-col gap-2">
                   <label htmlFor={field.name}>First Name:</label>
                   <input
                     className="border border-gray-300 rounded-md p-2 text-stone-400"
@@ -70,19 +70,21 @@ const TanStack = () => {
                     value={field.state.value}
                     onBlur={field.handleBlur}
                     onChange={(e) => field.handleChange(e.target.value)}
-                  />
+                    />
                   <FieldInfo field={field} />
                 </div>
               );
             }}
-          />
+            </form.Field>
         </div>
+
 
         <div className="flex flex-col gap-2">
           <form.Field
-            name="lastName"
-            children={(field) => (
-              <>
+            name="lastName">
+
+            {(field) => (
+                <>
                 <label htmlFor={field.name}>Last Name:</label>
                 <input
                   className="border border-gray-300 rounded-md p-2 text-stone-400"
@@ -91,11 +93,11 @@ const TanStack = () => {
                   value={field.state.value}
                   onBlur={field.handleBlur}
                   onChange={(e) => field.handleChange(e.target.value)}
-                />
+                  />
                 <FieldInfo field={field} />
               </>
             )}
-          />
+            </form.Field>
         </div>
 
         <div className="flex flex-col gap-2">
@@ -119,10 +121,11 @@ const TanStack = () => {
                 );
               },
             }}
-            children={(field) => {
-              // Avoid hasty abstractions. Render props are great!
-              return (
-                <div className="flex flex-col gap-2">
+            >
+            {(field) => {
+                // Avoid hasty abstractions. Render props are great!
+                return (
+                    <div className="flex flex-col gap-2">
                   <label htmlFor={field.name}>Email:</label>
                   <input
                     className="border border-gray-300 rounded-md p-2 text-stone-400"
@@ -131,12 +134,12 @@ const TanStack = () => {
                     value={field.state.value}
                     onBlur={field.handleBlur}
                     onChange={(e) => field.handleChange(e.target.value)}
-                  />
+                    />
                   <FieldInfo field={field} />
                 </div>
               );
             }}
-          />
+            </form.Field>
         </div>
 
 
@@ -159,10 +162,12 @@ const TanStack = () => {
                 );
               },
             }}
-            children={(field) => {
-              // Avoid hasty abstractions. Render props are great!
-              return (
-                <div className="flex flex-col gap-2">
+            >
+
+            {(field) => {
+                // Avoid hasty abstractions. Render props are great!
+                return (
+                    <div className="flex flex-col gap-2">
                   <label htmlFor={field.name}>Message:</label>
                   <input
                     className="border border-gray-300 rounded-md p-2 text-stone-400"
@@ -171,12 +176,12 @@ const TanStack = () => {
                     value={field.state.value}
                     onBlur={field.handleBlur}
                     onChange={(e) => field.handleChange(e.target.value)}
-                  />
+                    />
                   <FieldInfo field={field} />
                 </div>
               );
             }}
-          />
+            </form.Field>
         </div>
 
         <form.Subscribe
