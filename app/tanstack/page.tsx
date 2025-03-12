@@ -185,17 +185,18 @@ const TanStack = () => {
         </div>
 
         <form.Subscribe
-          selector={(state) => [state.canSubmit, state.isSubmitting]}
-          children={([canSubmit, isSubmitting]) => (
-            <button
+          selector={(state) => [state.canSubmit, state.isSubmitting]}>
+
+          {([canSubmit, isSubmitting]) => (
+              <button
               type="submit"
               className="hover:translate-0.5 hover:cursor-pointer bg-button text-white p-2 rounded-md disabled:opacity-40"
               disabled={!canSubmit}
-            >
+              >
               {isSubmitting ? "..." : "Submit"}
             </button>
           )}
-        />
+          </form.Subscribe>
       </form>
     </div>
   );
