@@ -1,4 +1,5 @@
 "use client";
+
 import * as React from "react";
 import { useForm } from "@tanstack/react-form";
 import type { AnyFieldApi } from "@tanstack/react-form";
@@ -31,7 +32,6 @@ const TanStack = () => {
     <div className="w-full p-4 flex flex-col items-center justify-center">
       <h1 className="text-2xl pb-8">Tanstack form without Zod</h1>
 
-
       <form
         className="flex flex-col gap-4 lg:max-w-[30rem] w-full"
         onSubmit={(e) => {
@@ -39,7 +39,7 @@ const TanStack = () => {
           e.stopPropagation();
           form.handleSubmit();
         }}
-        >
+      >
         <div className="flex flex-col gap-2">
           {/* A type-safe field component*/}
           <form.Field
@@ -47,19 +47,19 @@ const TanStack = () => {
             validators={{
               onChange: ({ value }) =>
                 !value
-              ? "A first name is required"
-              : value.length < 3
-              ? "First name must be at least 3 characters"
-              : undefined,
-              onChangeAsyncDebounceMs: 500,
+                  ? "A first name is required"
+                  : value.length < 3
+                  ? "First name must be at least 3 characters"
+                  : undefined,
+              onChangeAsyncDebounceMs: 100,
               onChangeAsync: async ({ value }) => {
-                await new Promise((resolve) => setTimeout(resolve, 1000));
+                await new Promise((resolve) => setTimeout(resolve, 500));
                 return (
                   value.includes("error") && 'No "error" allowed in first name'
                 );
               },
-            }}>
-
+            }}
+          >
             {(field) => {
               // Avoid hasty abstractions. Render props are great!
               return (
@@ -72,14 +72,13 @@ const TanStack = () => {
                     value={field.state.value}
                     onBlur={field.handleBlur}
                     onChange={(e) => field.handleChange(e.target.value)}
-                    />
+                  />
                   <FieldInfo field={field} />
                 </div>
               );
             }}
-            </form.Field>
+          </form.Field>
         </div>
-
 
         <div className="flex flex-col gap-2">
           <form.Field
@@ -87,20 +86,19 @@ const TanStack = () => {
             validators={{
               onChange: ({ value }) =>
                 !value
-              ? "A last name is required"
-              : value.length < 3
-              ? "Last name must be at least 3 characters"
-              : undefined,
-              onChangeAsyncDebounceMs: 500,
+                  ? "A last name is required"
+                  : value.length < 3
+                  ? "Last name must be at least 3 characters"
+                  : undefined,
+              onChangeAsyncDebounceMs: 100,
               onChangeAsync: async ({ value }) => {
-                await new Promise((resolve) => setTimeout(resolve, 1000));
+                await new Promise((resolve) => setTimeout(resolve, 500));
                 return (
-                  value.includes("error") && 'No "error" allowed in first name'
+                  value.includes("error") && 'No "error" allowed in last name'
                 );
               },
             }}
-            >
-
+          >
             {(field) => (
               <>
                 <label htmlFor={field.name}>Last Name:</label>
@@ -111,11 +109,11 @@ const TanStack = () => {
                   value={field.state.value}
                   onBlur={field.handleBlur}
                   onChange={(e) => field.handleChange(e.target.value)}
-                  />
+                />
                 <FieldInfo field={field} />
               </>
             )}
-            </form.Field>
+          </form.Field>
         </div>
 
         <div className="flex flex-col gap-2">
@@ -125,19 +123,17 @@ const TanStack = () => {
             validators={{
               onChange: ({ value }) =>
                 !value
-              ? "An email is required"
-              : !/^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/.test(value)
-              ? "Invalid email format"
-              : undefined,
-              onChangeAsyncDebounceMs: 500,
+                  ? "An email is required"
+                  : !/^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/.test(value)
+                  ? "Invalid email format"
+                  : undefined,
+              onChangeAsyncDebounceMs: 100,
               onChangeAsync: async ({ value }) => {
-                await new Promise((resolve) => setTimeout(resolve, 1000));
-                return (
-                  value.includes("error") && 'No "error" allowed in first name'
-                );
+                await new Promise((resolve) => setTimeout(resolve, 500));
+                return value.includes("error") && 'No "error" allowed in email';
               },
             }}
-            >
+          >
             {(field) => {
               // Avoid hasty abstractions. Render props are great!
               return (
@@ -150,14 +146,13 @@ const TanStack = () => {
                     value={field.state.value}
                     onBlur={field.handleBlur}
                     onChange={(e) => field.handleChange(e.target.value)}
-                    />
+                  />
                   <FieldInfo field={field} />
                 </div>
               );
             }}
-            </form.Field>
+          </form.Field>
         </div>
-
 
         <div className="flex flex-col gap-2">
           {/* A type-safe field component*/}
@@ -166,20 +161,19 @@ const TanStack = () => {
             validators={{
               onChange: ({ value }) =>
                 !value
-              ? "A message is required"
-              : value.length < 10
-              ? "Message must be at least 10 characters"
-              : undefined,
-              onChangeAsyncDebounceMs: 500,
+                  ? "A message is required"
+                  : value.length < 10
+                  ? "Message must be at least 10 characters"
+                  : undefined,
+              onChangeAsyncDebounceMs: 100,
               onChangeAsync: async ({ value }) => {
-                await new Promise((resolve) => setTimeout(resolve, 1000));
+                await new Promise((resolve) => setTimeout(resolve, 500));
                 return (
-                  value.includes("error") && 'No "error" allowed in first name'
+                  value.includes("error") && 'No "error" allowed in message'
                 );
               },
             }}
-            >
-
+          >
             {(field) => {
               // Avoid hasty abstractions. Render props are great!
               return (
@@ -192,29 +186,28 @@ const TanStack = () => {
                     value={field.state.value}
                     onBlur={field.handleBlur}
                     onChange={(e) => field.handleChange(e.target.value)}
-                    />
+                  />
                   <FieldInfo field={field} />
                 </div>
               );
             }}
-            </form.Field>
+          </form.Field>
         </div>
 
         <form.Subscribe
-          selector={(state) => [state.canSubmit, state.isSubmitting]}>
-
+          selector={(state) => [state.canSubmit, state.isSubmitting]}
+        >
           {([canSubmit, isSubmitting]) => (
             <button
-            type="submit"
-            className="hover:translate-0.5 hover:cursor-pointer bg-button text-white p-2 rounded-md disabled:opacity-40"
-            disabled={!canSubmit}
+              type="submit"
+              className="hover:translate-0.5 hover:cursor-pointer bg-button text-white p-2 rounded-md disabled:opacity-40"
+              disabled={!canSubmit}
             >
               {isSubmitting ? "..." : "Submit"}
             </button>
           )}
-          </form.Subscribe>
+        </form.Subscribe>
       </form>
-        
     </div>
   );
 };
