@@ -1,7 +1,16 @@
+"use client"
 import React from "react";
 import Link from "next/link";
+import { useState } from "react";
+import Lock from "../components/lock";
+import ToggleSwitch from "../components/toggleswitch";
+import Toggle from "@/components/toggle";
+
+
+
 
 const page = () => {
+  const [monthly, setMonthly] = useState(false);
   return (
     <div className="p-4 w-full items-center text-center">
       <h1 className="text-3xl font-bold pb-1">Tanstack Form Research</h1>
@@ -21,6 +30,13 @@ const page = () => {
           Zod Form
         </Link>
       </div>
+
+
+<Lock />
+<ToggleSwitch />
+<Toggle />
+
+
     </div>
   );
 };
